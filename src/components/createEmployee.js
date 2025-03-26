@@ -1,6 +1,8 @@
 import { useState ,useEffect} from 'react';
 import EmployeeService from '../Service/EmployeeService';
 import { useNavigate,useParams} from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 const CreateEmployee = () => {
    
     const [employee,setEmployee]=useState({id:'',name:'',sal:''})
@@ -35,16 +37,19 @@ const CreateEmployee = () => {
         if(id1)
         {
             EmployeeService.updateEmployee(employee,id1).then(response=>
-                {
+                {    
+                    toast.success('Employee updated successfully!', { position: 'top-right' });
                     navigate('/');
                 }).catch(error=>
                     {
                         console.log(error);
+                        toast.error('Error updating employee!');
                     })
         }
         else{
             EmployeeService.createEmployee(employee).then(response=>{
                 console.log(response.data);
+                toast.success('Employee added successfully!', { position: 'top-right' });
                 navigate('/');
             }).catch(error=>{
                 console.log(error);
