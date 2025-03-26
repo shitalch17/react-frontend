@@ -27,8 +27,6 @@ const EmployeeList = () => {
     }
 
 
-
-
     return (
         <div className="container-fluid my-4">
           {/* Add table-responsive for responsiveness */}
