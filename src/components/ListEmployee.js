@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import EmployeeService from "../Service/EmployeeService"
+import { toast } from 'react-toastify';
 
 import { Link } from 'react-router-dom'
 const EmployeeList = () => {
@@ -28,34 +29,42 @@ const EmployeeList = () => {
 
 
 
-    return <div>
-        <table className="table table-striped table-bordered my-4">
-            <thead>
+    return (
+        <div className="container-fluid my-4">
+          {/* Add table-responsive for responsiveness */}
+          <div className="table-responsive">
+            <table className="table table-striped table-bordered">
+              <thead className="table-dark">
                 <tr>
-                    <td>Emp id</td>
-                    <td>Emp name</td>
-                    <td>Emp sal</td>
-                    <td>Action</td>
+                  <th>Emp ID</th>
+                  <th>Emp Name</th>
+                  <th>Emp Salary</th>
+                  <th>Action</th>
                 </tr>
-            </thead>
-            <tbody>
-                {
-                    employee.map((d, i) =>
-                        <tr key={i}>
-                            <td>{d.id}</td>
-                            <td>{d.name}</td>
-                            <td>{d.sal}</td>
-                            <td><Link className="btn btn-info" to={`/employees/${d.id}`}>Update</Link>
-                                <button className='btn btn-danger' style={{ marginLeft: 10 }} onClick={() => { deleteEmployee(d.id) }}>Delete</button>
-                            </td>
-
-
-                        </tr>)
-
-                }
-
-            </tbody>
-        </table>
-    </div>
+              </thead>
+              <tbody>
+                {employee.map((d, i) => (
+                  <tr key={i}>
+                    <td>{d.id}</td>
+                    <td>{d.name}</td>
+                    <td>{d.sal}</td>
+                    <td>
+                      <Link className="btn btn-info btn-sm" to={`/employees/${d.id}`}>
+                        Update
+                      </Link>
+                      <button
+                        className="btn btn-danger btn-sm ms-2"
+                        onClick={() => deleteEmployee(d.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      );
 }
 export default EmployeeList;
