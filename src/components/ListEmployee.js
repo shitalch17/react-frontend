@@ -20,9 +20,11 @@ const EmployeeList = () => {
     }
     const deleteEmployee = (id) => {
         EmployeeService.deleteEmployee(id).then(response => {
+            toast.success("Employee deleted Successfully!!")
             getAllEmployees()
         }).catch(error => {
             console.log(error);
+            toast.success("Error deleting the Employee");
         })
     }
 
