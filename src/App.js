@@ -24,7 +24,7 @@ function App() {
         </Routes>
         
       </div>
-      <FooterComponent/> 
+     
      
     </div>
   );
